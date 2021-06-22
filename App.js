@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
-import { StyleSheet } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  TextInput
+} from 'react-native';
 import {
   ViroARScene,
   ViroText,
   ViroConstants,
-  ViroARSceneNavigator
+  ViroARSceneNavigator,
+  ViroFlexView
 } from '@viro-community/react-viro';
 
 class HelloWorldSceneAR extends Component {
@@ -21,7 +27,7 @@ class HelloWorldSceneAR extends Component {
 
   render() {
     return (
-      <ViroARScene onTrackingUpdated={this._onInitialized} >
+      <ViroARScene onTrackingUpdated={this._onInitialized}>
         <ViroText text={this.state.text} scale={[.5, .5, .5]} position={[0, 0, -1]} style={styles.helloWorldTextStyle} />
       </ViroARScene>
     );
@@ -30,7 +36,7 @@ class HelloWorldSceneAR extends Component {
   _onInitialized(state, reason) {
     if (state == ViroConstants.TRACKING_NORMAL) {
       this.setState({
-        text : "Hello World!"
+        text: "Hello World!"
       });
     } else if (state == ViroConstants.TRACKING_NONE) {
       // Handle loss of tracking
@@ -48,16 +54,21 @@ var styles = StyleSheet.create({
   },
 });
 
-export default class App extends React.Component{
-	render(){
+export default class App extends React.Component {
+	render() {
 			return(
-				<ViroARSceneNavigator
-					autofocus={true}
-					initialScene={{
-						scene: HelloWorldSceneAR,
-					}}
-					style={{flex: 1}}
-				/>
+				<View style={{ flex: 1 }}>
+          <ViroARSceneNavigator
+            autofocus={true}
+            initialScene={{
+              scene: HelloWorldSceneAR,
+            }}
+				  />
+
+          <View style={{ backgroundColor: "rgba(0, 0, 0, 0)" }}>
+            <TextInput keyboardType={"number-pad"}></TextInput>
+          </View>
+        </View>
 			);
 		}
 }
