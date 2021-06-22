@@ -1,53 +1,45 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {StyleSheet, View, Text, TextInput} from 'react-native';
-import {
-  ViroARScene,
-  ViroText,
-  ViroConstants,
-  ViroARSceneNavigator,
-  ViroFlexView,
-  ViroBox,
-  ViroMaterials,
-} from '@viro-community/react-viro';
-import HelloWorldScene from './src/scenes/HelloWorldScene';
+import {ViroARSceneNavigator} from '@viro-community/react-viro';
+import BoxScene from './src/scenes/BoxScene';
 import {CoordinatesContext} from './src/contexts/CoordinatesContext';
 
 export default class App extends React.Component {
-  state = {
-    x: 0,
-    y: 0,
-    z: 0,
+  constructor(props) {
+    super(props);
+    this.state = {
+      x: 0,
+      y: 0,
+      z: 0,
+    };
+  }
+
+  onEndEditingX = (event) => {
+    this.setState({
+      x: parseFloat(event.nativeEvent.text),
+    });
+  };
+
+  onEndEditingY = (event) => {
+    this.setState({
+      y: parseFloat(event.nativeEvent.text),
+    });
+  };
+
+  onEndEditingZ = (event) => {
+    this.setState({
+      z: parseFloat(event.nativeEvent.text),
+    });
   };
 
   render() {
-    xHandler = (event) => {
-      const value = parseFloat(event.nativeEvent.text);
-      this.setState({
-        x: value,
-      });
-    };
-
-    yHandler = (event) => {
-      const value = parseFloat(event.nativeEvent.text);
-      this.setState({
-        y: value,
-      });
-    };
-
-    zHandler = (event) => {
-      const value = parseFloat(event.nativeEvent.text);
-      this.setState({
-        z: value,
-      });
-    };
-
     return (
       <View style={{flex: 1}}>
         <CoordinatesContext.Provider value={this.state}>
           <ViroARSceneNavigator
             autofocus={true}
             initialScene={{
-              scene: HelloWorldScene,
+              scene: BoxScene,
             }}
           />
           <View style={styles.guiViewStyle}>
@@ -55,21 +47,21 @@ export default class App extends React.Component {
               <Text>X</Text>
               <TextInput
                 keyboardType={'number-pad'}
-                onEndEditing={xHandler}></TextInput>
+                onEndEditing={this.onEndEditingX}></TextInput>
             </View>
 
             <View style={styles.inputCoordinatesStyle}>
               <Text>Y</Text>
               <TextInput
                 keyboardType={'number-pad'}
-                onEndEditing={yHandler}></TextInput>
+                onEndEditing={this.onEndEditingY}></TextInput>
             </View>
 
             <View style={styles.inputCoordinatesStyle}>
               <Text>Z</Text>
               <TextInput
                 keyboardType={'number-pad'}
-                onEndEditing={zHandler}></TextInput>
+                onEndEditing={this.onEndEditingZ}></TextInput>
             </View>
           </View>
         </CoordinatesContext.Provider>
