@@ -10,9 +10,6 @@ export default class Home extends React.Component {
     return (
       <View>
         <Text>Home</Text>
-        <Button
-          title="AR"
-          onPress={() => this.props.navigation.navigate('AR')}></Button>
       </View>
     );
   }

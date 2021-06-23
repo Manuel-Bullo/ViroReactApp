@@ -64,9 +64,6 @@ export default class ARScreen extends React.Component {
                 onEndEditing={this.onEndEditingZ}></TextInput>
             </View>
           </View>
-          <Button
-            title="Home"
-            onPress={() => this.props.navigation.pop()}></Button>
         </CoordinatesContext.Provider>
       </View>
     );
