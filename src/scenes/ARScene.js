@@ -103,7 +103,7 @@ export default class ARScene extends React.Component {
     });
 
     CompassHeading.start(3, (heading) => {
-      this.setState({compassHeading: heading});
+      this.setState({compassHeading: heading.heading});
     });
   }
 
@@ -157,10 +157,12 @@ export default class ARScene extends React.Component {
     if (isAndroid) {
       let degree = this.state.compassHeading;
       let angleRadian = (degree * Math.PI) / 180;
+
       let newObjX =
         objDeltaX * Math.cos(angleRadian) - objDeltaY * Math.sin(angleRadian);
       let newObjY =
         objDeltaX * Math.sin(angleRadian) + objDeltaY * Math.cos(angleRadian);
+
       return {x: newObjX, z: -newObjY};
     }
 
@@ -205,8 +207,6 @@ export default class ARScene extends React.Component {
   };
 
   placeARObjects = () => {
-    console.log('PlaceARObjects');
-
     if (this.state.nearbyPlaces.length == 0) {
       return undefined;
     }
