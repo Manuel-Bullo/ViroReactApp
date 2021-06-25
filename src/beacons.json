@@ -1,0 +1,86 @@
+[
+    {
+        "id": "t3st1",
+        "title": "Test",
+        "lat": 43.4615000,
+        "lng": 11.8233450,
+        "icon": "./res/images/tmp.png"
+    },
+    {
+        "id": "t3st2",
+        "title": "Test",
+        "lat": 43.46179334801122,
+        "lng": 11.82334369846511,
+        "icon": "./res/images/tmp.png"
+    },
+    {
+        "id": "t3st3",
+        "title": "Test",
+        "lat": 43.461699582675756,
+        "lng": 11.823999182185107,
+        "icon": "./res/images/tmp.png"
+    },
+    {
+        "id": "t3st4",
+        "title": "Test",
+        "lat": 43.46153173078747,
+        "lng": 11.82281580279152,
+        "icon": "./res/images/tmp.png"
+    },
+    {
+        "id": "t3st5",
+        "title": "Test",
+        "lat": 43.461740098581224,
+        "lng": 11.822630800080193,
+        "icon": "./res/images/tmp.png"
+    },
+    {
+        "id": "t3st6",
+        "title": "Test",
+        "lat": 43.46179334801335,
+        "lng": 11.822547867833775,
+        "icon": "./res/images/tmp.png"
+    },
+    {
+        "id": "t3st7",
+        "title": "Test",
+        "lat": 43.46173662579005,
+        "lng": 11.82250640170279,
+        "icon": "./res/images/tmp.png"
+    },
+    {
+        "id": "t3st8",
+        "title": "Test",
+        "lat": 43.46182691828292,
+        "lng": 11.822236871901929,
+        "icon": "./res/images/tmp.png"
+    },
+    {
+        "id": "t3st9",
+        "title": "Test",
+        "lat": 43.46201213323087,
+        "lng": 11.822426659158156,
+        "icon": "./res/images/tmp.png"
+    },
+    {
+        "id": "t3st10",
+        "title": "Test",
+        "lat": 43.4616984250794,
+        "lng": 11.82217307786622,
+        "icon": "./res/images/tmp.png"
+    },
+    {
+        "id": "t3st11",
+        "title": "Test",
+        "lat": 43.46127784734359,
+        "lng": 11.822294061624955,
+        "icon": "./res/images/tmp.png"
+    },
+    {
+        "id": "t3st12",
+        "title": "Test",
+        "lat": 43.46154796852847,
+        "lng": 11.823383448737646,
+        "icon": "./res/images/tmp.png"
+    }
+]
