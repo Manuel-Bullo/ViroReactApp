@@ -10,6 +10,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@react-native-community/geolocation": "^2.0.2",
     "@react-native-community/masked-view": "^0.1.11",
     "@react-navigation/bottom-tabs": "^5.11.11",
     "@react-navigation/native": "^5.9.4",
@@ -17,7 +18,9 @@
     "@viro-community/react-viro": "2.20.2",
     "react": "16.13.1",
     "react-native": "0.63.4",
+    "react-native-compass-heading": "^1.2.1",
     "react-native-gesture-handler": "^1.10.3",
+    "react-native-permissions": "^3.0.4",
     "react-native-reanimated": "^2.2.0",
     "react-native-safe-area-context": "^3.2.0",
     "react-native-screens": "^3.4.0"
