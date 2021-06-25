@@ -205,6 +205,8 @@ export default class ARScene extends React.Component {
   };
 
   placeARObjects = () => {
+    console.log('PlaceARObjects');
+
     if (this.state.nearbyPlaces.length == 0) {
       return undefined;
     }
@@ -250,8 +252,7 @@ export default class ARScene extends React.Component {
 
   shouldComponentUpdate(nextProps, nextState) {
     //return !this.state.isRendered && nextState.isRendered;
-    //return !this.state.isRendered;
-    return true;
+    return !this.state.isRendered;
   }
 
   render() {
