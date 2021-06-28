@@ -80,6 +80,10 @@ export default class ARScene extends React.Component<Props, State> {
     CompassHeading.stop();
   }
 
+  shouldComponentUpdate(nextProps: any, nextState: any) {
+    return !this.state.isRendered;
+  }
+
   latLongToMerc = (latDeg: number, longDeg: number) => {
     // From: https://gist.github.com/scaraveos/5409402
     const longRad = (longDeg / 180.0) * Math.PI;
@@ -94,8 +98,8 @@ export default class ARScene extends React.Component<Props, State> {
     const isAndroid = Platform.OS === 'android';
     const latObj = lat;
     const longObj = lng;
-    const latMobile = global.location.latitude; //test
-    const longMobile = global.location.longitude; //test
+    const latMobile = global.location.latitude;
+    const longMobile = global.location.longitude;
 
     const deviceObjPoint = this.latLongToMerc(latObj, longObj);
     const mobilePoint = this.latLongToMerc(latMobile, longMobile);
@@ -117,10 +121,10 @@ export default class ARScene extends React.Component<Props, State> {
     return {x: objDeltaX, z: -objDeltaY};
   };
 
-  // Used for dynamicly render objects depending on the location
+  // Used for dynamically render objects depending on the location
   getNearbyPlaces = () => {
     /*this.setState({
-      nearbyPlaces: beacons,
+      nearbyPlaces: ,
     });*/
   };
 
@@ -157,10 +161,6 @@ export default class ARScene extends React.Component<Props, State> {
 
     return ARTags;
   };
-
-  shouldComponentUpdate(nextProps: any, nextState: any) {
-    return !this.state.isRendered;
-  }
 
   render() {
     return (
