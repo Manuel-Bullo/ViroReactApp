@@ -2,10 +2,13 @@ import React from 'react';
 import {ViroARSceneNavigator} from '@viro-community/react-viro';
 import ARScene from '../scenes/ARScene';
 
-export default class ARScreen extends React.Component {
-  render() {
-    return (
-      <ViroARSceneNavigator
+export type Props = {};
+
+const ARScreen: React.FC<Props> = ({
+
+}) => {
+  return (
+    <ViroARSceneNavigator
         worldAlignment={'GravityAndHeading'}
         autofocus={true}
         initialScene={{
@@ -13,6 +16,7 @@ export default class ARScreen extends React.Component {
         }}
         style={{flex: 1}}
       />
-    );
-  }
+  );
 }
+
+export default ARScreen;
