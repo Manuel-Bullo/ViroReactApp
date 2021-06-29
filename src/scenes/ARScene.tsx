@@ -10,6 +10,8 @@ import {Platform, ToastAndroid} from 'react-native';
 import CompassHeading from 'react-native-compass-heading';
 import beacons from '../beacons.json';
 
+const BeaconsAPIURL = 'http://172.16.1.150/api/beacons';
+
 const Toast = (message: string) => {
   ToastAndroid.showWithGravityAndOffset(
     message,
@@ -70,10 +72,12 @@ export default class ARScene extends React.Component<Props, State> {
   componentDidMount() {
     CompassHeading.start(3, (heading) => {
       if (typeof this.state.compassHeading == 'undefined') {
-        console.log("compassHeading: " + heading.heading);
+        //console.log("compassHeading: " + heading.heading);
         this.setState({compassHeading: heading.heading});
       }
     });
+
+    this.getNearbyPlaces();
   }
 
   componentWillUnmount() {
@@ -123,37 +127,46 @@ export default class ARScene extends React.Component<Props, State> {
 
   // Used for dynamically render objects depending on the location
   getNearbyPlaces = () => {
-    /*this.setState({
-      nearbyPlaces: ,
-    });*/
+    fetch(BeaconsAPIURL)
+      .then((response) => response.json())
+      .then((responseJson) => {
+        this.setState({
+          nearbyPlaces: responseJson,
+        });
+      });
   };
 
   placeARObjects = () => {
-    if (typeof this.state.compassHeading == 'undefined') {
+    if (typeof this.state.nearbyPlaces == 'undefined' ||
+      typeof this.state.compassHeading == 'undefined' || 
+      this.state.nearbyPlaces.length == 0) {
       return undefined;
     }
-
     console.log("placeARObjects");
+    console.log("compassHeading: " + this.state.compassHeading + "\n");
 
     this.setState({isRendered: true});
 
-    const ARTags = beacons.map((item: any) => {
+    const ARTags = this.state.nearbyPlaces.map((item: any) => {
       const coords = this.transformGpsToAR(item.lat, item.lng);
       const scale = Math.abs(Math.round(coords.z / 15));
       const distance = distanceBetweenPoints(global.location, {
         latitude: item.lat,
         longitude: item.lng,
       });
+      const rotation = JSON.parse(item.rotation);
 
       return (
         <ViroNode key={'node' + item.id}>
           <Viro3DObject
             key={item.id}
-            source={require('../models/GLB/monkey.glb')}
-            resources={[require('../models/GLB/monkey_texture.jpeg')]}
+            source={require('../models/OBJ/monkey.obj')}
+            resources={[require('../models/OBJ/monkey_texture.jpeg')]}
             position={[coords.x, 0, coords.z]}
             scale={[1, 1, 1]}
-            type="GLB"
+            //rotation={[rotation.x, rotation.y, rotation.z]} // do math using compass heading
+            rotation={[rotation.x, Math.abs(180 - this.state.compassHeading) + rotation.y, rotation.z]}
+            type="OBJ"
           />
         </ViroNode>
       );
