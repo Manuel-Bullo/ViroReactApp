@@ -160,7 +160,9 @@ export default class ARScene extends React.Component<Props, State> {
         <ViroNode key={'node' + item.id}>
           <Viro3DObject
             key={item.id}
-            source={{uri: server_root + "storage/" + item.icon}}
+            source={item.icon ? {uri: server_root + "storage/" + item.icon} : require('../models/OBJ/monkey.obj')}
+            resources={[require('../models/OBJ/monkey_texture.jpeg')]}
+            //source={require('../models/OBJ/monkey.obj')}
             //resources={[require('../models/OBJ/monkey_texture.jpeg')]}
             position={[coords.x, 0, coords.z]}
             scale={[1, 1, 1]}
