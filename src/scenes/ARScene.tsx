@@ -8,9 +8,9 @@ import {
 } from '@viro-community/react-viro';
 import {Platform, ToastAndroid} from 'react-native';
 import CompassHeading from 'react-native-compass-heading';
-import beacons from '../beacons.json';
 
-const BeaconsAPIURL = 'http://172.16.1.150/api/beacons';
+const server_root = 'http://172.16.1.150/';
+const BeaconsAPIURL = server_root + 'api/beacons';
 
 const Toast = (message: string) => {
   ToastAndroid.showWithGravityAndOffset(
@@ -160,11 +160,10 @@ export default class ARScene extends React.Component<Props, State> {
         <ViroNode key={'node' + item.id}>
           <Viro3DObject
             key={item.id}
-            source={require('../models/OBJ/monkey.obj')}
-            resources={[require('../models/OBJ/monkey_texture.jpeg')]}
+            source={{uri: server_root + "storage/" + item.icon}}
+            //resources={[require('../models/OBJ/monkey_texture.jpeg')]}
             position={[coords.x, 0, coords.z]}
             scale={[1, 1, 1]}
-            //rotation={[rotation.x, rotation.y, rotation.z]} // do math using compass heading
             rotation={[rotation.x, Math.abs(180 - this.state.compassHeading) + rotation.y, rotation.z]}
             type="OBJ"
           />
