@@ -5,6 +5,7 @@ import {
   ViroConstants,
   Viro3DObject,
   ViroAmbientLight,
+  ViroMaterials,
 } from '@viro-community/react-viro';
 import {Platform, ToastAndroid} from 'react-native';
 import CompassHeading from 'react-native-compass-heading';
@@ -41,6 +42,10 @@ const distanceBetweenPoints = (p1: any, p2: any) => {
   return d;
 };
 
+ViroMaterials.createMaterials({
+  wood: { shininess: 2.0, lightingModel: "Blinn", diffuseTexture: require('../textures/wood.jpeg'), },
+});
+
 export interface Props {
 
 }
@@ -72,7 +77,6 @@ export default class ARScene extends React.Component<Props, State> {
   componentDidMount() {
     CompassHeading.start(3, (heading) => {
       if (typeof this.state.compassHeading == 'undefined') {
-        //console.log("compassHeading: " + heading.heading);
         this.setState({compassHeading: heading.heading});
       }
     });
@@ -142,8 +146,8 @@ export default class ARScene extends React.Component<Props, State> {
       this.state.nearbyPlaces.length == 0) {
       return undefined;
     }
-    console.log("placeARObjects");
-    console.log("compassHeading: " + this.state.compassHeading + "\n");
+    
+    console.log("compassHeading: " + this.state.compassHeading);
 
     this.setState({isRendered: true});
 
@@ -161,9 +165,7 @@ export default class ARScene extends React.Component<Props, State> {
           <Viro3DObject
             key={item.id}
             source={item.icon ? {uri: server_root + "storage/" + item.icon} : require('../models/OBJ/monkey.obj')}
-            resources={[require('../models/OBJ/monkey_texture.jpeg')]}
-            //source={require('../models/OBJ/monkey.obj')}
-            //resources={[require('../models/OBJ/monkey_texture.jpeg')]}
+            materials={["wood"]}
             position={[coords.x, 0, coords.z]}
             scale={[1, 1, 1]}
             rotation={[rotation.x, Math.abs(180 - this.state.compassHeading) + rotation.y, rotation.z]}

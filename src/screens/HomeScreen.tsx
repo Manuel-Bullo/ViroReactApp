@@ -30,7 +30,6 @@ const HomeScreen = ({navigation}) => {
 
     if (cameraReady && locationReady) {
       const geoSuccess = (result: any) => {
-        console.log("GeoSuccess")
         setGeoSuccess(true);
         global.location = result.coords;
       };
